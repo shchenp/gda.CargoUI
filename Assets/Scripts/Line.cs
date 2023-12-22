@@ -8,7 +8,8 @@ public class Line : MonoBehaviour
 {
    [SerializeField] private LineRenderer _renderer;
    [SerializeField] private UnityEvent<Vector3[]> _onStopDraw;
-
+   [SerializeField] private double _step;
+   
    private Camera _camera;
    private float _depth = 12.88f;
 
@@ -40,12 +41,17 @@ public class Line : MonoBehaviour
 
    private void SetNewPoint()
    {
-      _renderer.positionCount++;
+      var previousPosition = _renderer.GetPosition(_renderer.positionCount - 1);
       
       var mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, _depth);
-      var position = _camera.ScreenToWorldPoint(mousePosition);
+      var nextPosition = _camera.ScreenToWorldPoint(mousePosition);
       
-      var index = _renderer.positionCount - 1;
-      _renderer.SetPosition(index, position);
+      if (Vector3.Distance(nextPosition, previousPosition) > _step)
+      {
+         _renderer.positionCount++;
+         var index = _renderer.positionCount - 1;
+         
+         _renderer.SetPosition(index, nextPosition);  
+      }
    }
 }
