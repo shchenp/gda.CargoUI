@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Rope : MonoBehaviour
 {
+    [SerializeField] private float _speed;
+    
     private Vector3[] _path;
 
     private void OnEnable()
@@ -29,7 +31,7 @@ public class Rope : MonoBehaviour
     {
         while(transform.position != target)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * _speed);
             yield return null;
         }
     }
