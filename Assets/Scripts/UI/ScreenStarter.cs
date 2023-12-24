@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstScreenStarter : MonoBehaviour
+public class ScreenStarter : MonoBehaviour
 {
     [SerializeField] private GameObject _startScreen;
     private void Start()
