@@ -2,6 +2,7 @@
 using System.Collections;
 using Obi;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BoxController : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class BoxController : MonoBehaviour
     {
         // Отцепляем ящик от веревки
         _ropeAttachment.enabled = false;
+        
+        UIManager.Instance.ShowFailedScreen();
     }
 
     // TODO: Вызовите данный метод, когда ящик на веревке окажется над финишной точкой 
@@ -66,5 +69,7 @@ public class BoxController : MonoBehaviour
         
         // Когда ящик занял нужную позицию - отцепляем ящик от веревки
         _ropeAttachment.enabled = false;
+        
+        UIManager.Instance.ShowPassScreen();
     }
 }

@@ -19,6 +19,11 @@ public class Rope : MonoBehaviour
         _path = path;
     }
 
+    public void Stop()
+    {
+        StopAllCoroutines();
+    }
+
     private IEnumerator Move()
     {
         for (var i = 0; i < _path.Length; i++)
@@ -26,6 +31,7 @@ public class Rope : MonoBehaviour
            yield return StartCoroutine(MoveToTarget(_path[i]));
         }
     }
+    
 
     private IEnumerator MoveToTarget(Vector3 target)
     {

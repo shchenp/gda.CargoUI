@@ -16,6 +16,7 @@ public class Line : MonoBehaviour
    private void Awake()
    {
       _camera = Camera.main;
+      GameManager.Instance.SetLineDrawer(this);
    }
 
    private void Update()
