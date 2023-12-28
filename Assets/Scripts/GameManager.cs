@@ -7,26 +7,20 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-   private UIManager _uiManager;
-   private Line _line;
+    [SerializeField] private ScreenManager _screenManager;
+    [SerializeField] private GameController _gameController;
 
-   private void Start()
-   {
-      _uiManager = UIManager.Instance;
-   }
+    protected override void Awake()
+    {
+        base.Awake();
+        
+        Instance._gameController.PlayerFailed += _screenManager.ShowFailedScreen;
+        Instance._gameController.PlayerPassed += _screenManager.ShowPassScreen;
+    }
 
-   public void Run()
-   {
-      _line.enabled = true;
-   }
-
-   public void SetLineDrawer(Line line)
-   {
-      Instance._line = line;
-   }
-   
-   public void RestartScene()
-   {
-      SceneManager.LoadScene(GlobalConstants.SCENE_NAME);
-   }
+    private void OnDestroy()
+    {
+        Instance._gameController.PlayerFailed -= _screenManager.ShowFailedScreen;
+        Instance._gameController.PlayerPassed -= _screenManager.ShowPassScreen;
+    }
 }

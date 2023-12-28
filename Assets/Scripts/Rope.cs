@@ -19,11 +19,6 @@ public class Rope : MonoBehaviour
         _path = path;
     }
 
-    public void Stop()
-    {
-        StopAllCoroutines();
-    }
-
     private IEnumerator Move()
     {
         for (var i = 0; i < _path.Length; i++)

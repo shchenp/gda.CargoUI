@@ -32,10 +32,9 @@ public class BoxController : MonoBehaviour
         // Отцепляем ящик от веревки
         _ropeAttachment.enabled = false;
         
-        UIManager.Instance.ShowFailedScreen();
+        GameController.Instance.PlayerFailed?.Invoke();
     }
-
-    // TODO: Вызовите данный метод, когда ящик на веревке окажется над финишной точкой 
+    
     // Vector3 position - точка, на которую должен опуститься ящик
     public void DropDown(Vector3 position)
     {
@@ -69,7 +68,7 @@ public class BoxController : MonoBehaviour
         
         // Когда ящик занял нужную позицию - отцепляем ящик от веревки
         _ropeAttachment.enabled = false;
-        
-        UIManager.Instance.ShowPassScreen();
+
+        GameController.Instance.PlayerPassed?.Invoke();
     }
 }
