@@ -25,6 +25,8 @@ public class Rope : MonoBehaviour
         {
            yield return StartCoroutine(MoveToTarget(_path[i]));
         }
+        
+        GameController.Instance.PlayerFailed.Invoke();
     }
     
 
