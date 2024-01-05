@@ -48,16 +48,15 @@ public class ScreenManager : Singleton<ScreenManager>
     private void StartGame()
     {
         Instance._startScreen.gameObject.SetActive(false);
-        Debug.Log("Start game");
         Instance.OnGameStarted?.Invoke();
     }
 
     private void RestartGame()
-    {
+    { 
         SceneManager.LoadScene(GlobalConstants.SCENE_NAME);
         
-       Instance._failedScreen.gameObject.SetActive(false);
-       Instance._passScreen.gameObject.SetActive(false);
+        Instance._failedScreen.gameObject.SetActive(false);
+        Instance._passScreen.gameObject.SetActive(false);
     }
 
     public void ShowFailedScreen()

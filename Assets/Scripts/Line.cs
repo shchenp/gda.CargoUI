@@ -17,7 +17,6 @@ public class Line : MonoBehaviour
    {
       _camera = Camera.main;
       GameController.Instance.SetLineDrawer(this);
-      Debug.Log("Line awake");
    }
 
    private void Update()
